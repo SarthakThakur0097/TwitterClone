@@ -1,14 +1,14 @@
 //
-//  ConversationController.swift
+//  ConversationsController.swift
 //  TwitterClone
 //
-//  Created by Sarthak on 4/15/20.
+//  Created by Naresh on 4/15/20.
 //  Copyright © 2020 Sarthak Thakur. All rights reserved.
 //
 
 import UIKit
 
-class ConversationController: UIViewController{
+class ConversationsController: UIViewController{
     
     // MARK: - Properties
     
@@ -16,6 +16,8 @@ class ConversationController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemPink
     }
     
     // MARK: - Helper
