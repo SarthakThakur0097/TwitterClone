@@ -13,6 +13,11 @@
 		2D0A42AF2447879C0049380E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0A42AE2447879C0049380E /* Assets.xcassets */; };
 		2D0A42B22447879C0049380E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D0A42B02447879C0049380E /* LaunchScreen.storyboard */; };
 		2D0A42C12447A4DB0049380E /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42C02447A4DB0049380E /* MainTabController.swift */; };
+		2D0A42C32447A8890049380E /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42C22447A8890049380E /* FeedController.swift */; };
+		2D0A42C52447A8D10049380E /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42C42447A8D10049380E /* ExploreController.swift */; };
+		2D0A42C72447A8DC0049380E /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42C62447A8DC0049380E /* NotificationsController.swift */; };
+		2D0A42CB2447AA5D0049380E /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42CA2447AA5D0049380E /* ConversationsController.swift */; };
+		2D0A42CD2447CCDC0049380E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42CC2447CCDC0049380E /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		2D0A42B12447879C0049380E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D0A42B32447879C0049380E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D0A42C02447A4DB0049380E /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		2D0A42C22447A8890049380E /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
+		2D0A42C42447A8D10049380E /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
+		2D0A42C62447A8DC0049380E /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		2D0A42CA2447AA5D0049380E /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
+		2D0A42CC2447CCDC0049380E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +93,7 @@
 		2D0A42BA2447A3DB0049380E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2D0A42CC2447CCDC0049380E /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -98,6 +109,10 @@
 			isa = PBXGroup;
 			children = (
 				2D0A42C02447A4DB0049380E /* MainTabController.swift */,
+				2D0A42C22447A8890049380E /* FeedController.swift */,
+				2D0A42C42447A8D10049380E /* ExploreController.swift */,
+				2D0A42C62447A8DC0049380E /* NotificationsController.swift */,
+				2D0A42CA2447AA5D0049380E /* ConversationsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -194,9 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D0A42C72447A8DC0049380E /* NotificationsController.swift in Sources */,
+				2D0A42CB2447AA5D0049380E /* ConversationsController.swift in Sources */,
 				2D0A42A62447879B0049380E /* AppDelegate.swift in Sources */,
+				2D0A42CD2447CCDC0049380E /* Extensions.swift in Sources */,
+				2D0A42C52447A8D10049380E /* ExploreController.swift in Sources */,
 				2D0A42A82447879B0049380E /* SceneDelegate.swift in Sources */,
 				2D0A42C12447A4DB0049380E /* MainTabController.swift in Sources */,
+				2D0A42C32447A8890049380E /* FeedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
