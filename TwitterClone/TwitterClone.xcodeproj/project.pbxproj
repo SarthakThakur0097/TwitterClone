@@ -21,6 +21,7 @@
 		2D0A42D02447E9430049380E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42CF2447E9430049380E /* LoginController.swift */; };
 		2D0A42D22447E9B90049380E /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42D12447E9B90049380E /* RegistrationController.swift */; };
 		2D2985872447F0CC005F615F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2985862447F0CC005F615F /* Utilities.swift */; };
+		2D2985892448BC0F005F615F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D2985882448BC0E005F615F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		2D0A42CF2447E9430049380E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		2D0A42D12447E9B90049380E /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		2D2985862447F0CC005F615F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		2D2985882448BC0E005F615F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				2D0A42AB2447879B0049380E /* Main.storyboard */,
 				2D0A42AE2447879C0049380E /* Assets.xcassets */,
 				2D0A42B02447879C0049380E /* LaunchScreen.storyboard */,
+				2D2985882448BC0E005F615F /* GoogleService-Info.plist */,
 				2D0A42B32447879C0049380E /* Info.plist */,
 			);
 			path = TwitterClone;
@@ -214,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D0A42B22447879C0049380E /* LaunchScreen.storyboard in Resources */,
+				2D2985892448BC0F005F615F /* GoogleService-Info.plist in Resources */,
 				2D0A42AF2447879C0049380E /* Assets.xcassets in Resources */,
 				2D0A42AD2447879B0049380E /* Main.storyboard in Resources */,
 			);
