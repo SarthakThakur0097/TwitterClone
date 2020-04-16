@@ -26,7 +26,7 @@ class LoginController: UIViewController {
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.twitterBlue, for: .normal)
         button.backgroundColor = .white
-    button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
@@ -81,7 +81,8 @@ class LoginController: UIViewController {
     }
     
     @objc func handleShowSignUp() {
-        print("Show sign up...")
+        let controller = RegistrationController()
+        navigationController?.pushViewController(controller, animated: true)
     }
     // MARK: Helpers
     
@@ -95,7 +96,9 @@ class LoginController: UIViewController {
         logoImageView.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 0)
         logoImageView.setDimensions(width: 150, height: 150)
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView, loginButton])
+        let stack = UIStackView(arrangedSubviews: [emailContainerView,
+                                                   passwordContainerView,
+                                                   loginButton])
         stack.axis = .vertical
         stack.spacing = 20
         stack.distribution = .fillEqually
@@ -103,6 +106,7 @@ class LoginController: UIViewController {
         
         stack.anchor(top: logoImageView.bottomAnchor, left: view.leftAnchor,
                      right: view.rightAnchor, paddingLeft: 32, paddingRight: 32)
+        
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor,
                                      right: view.rightAnchor, paddingLeft: 40, paddingRight: 40)
