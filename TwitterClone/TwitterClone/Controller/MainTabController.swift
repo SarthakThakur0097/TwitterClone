@@ -18,6 +18,7 @@ class MainTabController: UITabBarController {
         button.backgroundColor = .twitterBlue
         button.setImage(UIImage(named: "new_tweet"), for: .normal)
         button.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        
         return button
     }()
     // MARK: - Lifecycle
@@ -42,6 +43,7 @@ class MainTabController: UITabBarController {
         
         actionButton.layer.cornerRadius = 56 / 2
     }
+    
     func configureViewControllers(){
         
         let feed = templateNavigationController(image: UIImage(named: "home_unselected"), rootViewController:
