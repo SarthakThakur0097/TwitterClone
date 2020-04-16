@@ -16,6 +16,7 @@ class RegistrationController: UIViewController {
     }
     // MARK: - Properties
     
+    private let imagePicker = UIImagePickerController()
     
     private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -105,7 +106,7 @@ class RegistrationController: UIViewController {
         print("Registering...")
     }
     @objc func handleAddProfilePhoto() {
-        print("Add Photo...")
+        present(imagePicker, animated: true, completion: nil)
     }
     
     @objc func handleShowLogin(){
@@ -116,6 +117,8 @@ class RegistrationController: UIViewController {
     func configureUI() {
         view.backgroundColor = .twitterBlue
         
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         view.addSubview(plusPhotoButton)
         plusPhotoButton.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor)
         plusPhotoButton.setDimensions(width: 150, height: 150)
@@ -136,5 +139,23 @@ class RegistrationController: UIViewController {
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor,
                                      right: view.rightAnchor, paddingLeft: 40, paddingRight: 40)
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let profileImage = info[.editedImage] as? UIImage else { return }
+        
+        plusPhotoButton.layer.cornerRadius = 128 / 2
+        plusPhotoButton.imageView?.contentMode = .scaleAspectFill
+        plusPhotoButton.imageView?.clipsToBounds = true
+        plusPhotoButton.layer.borderColor = UIColor.white.cgColor
+        plusPhotoButton.layer.borderWidth = 3
+        plusPhotoButton.layer.masksToBounds = true
+        
+        self.plusPhotoButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        
+        dismiss(animated: true, completion: nil)
     }
 }
