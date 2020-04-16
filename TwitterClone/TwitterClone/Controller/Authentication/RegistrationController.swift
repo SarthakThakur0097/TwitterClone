@@ -7,13 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
 class RegistrationController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureUI()
-    }
     // MARK: - Properties
     
     private let imagePicker = UIImagePickerController()
@@ -98,12 +95,28 @@ class RegistrationController: UIViewController {
         
         return button
     }()
-    // MAKR: - Lifecycle
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUI()
+    }
     
     // MARK: - Selectors
     
     @objc func handleRegistration() {
-        print("Registering...")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                print("DEBUG: Error is \(error.localizedDescription)")
+                
+                return
+            }
+            print("DEBUG: Successfully registered user")
+        }
     }
     @objc func handleAddProfilePhoto() {
         present(imagePicker, animated: true, completion: nil)
