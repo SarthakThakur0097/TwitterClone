@@ -20,6 +20,7 @@
 		2D0A42CD2447CCDC0049380E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42CC2447CCDC0049380E /* Extensions.swift */; };
 		2D0A42D02447E9430049380E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42CF2447E9430049380E /* LoginController.swift */; };
 		2D0A42D22447E9B90049380E /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A42D12447E9B90049380E /* RegistrationController.swift */; };
+		2D2985872447F0CC005F615F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2985862447F0CC005F615F /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		2D0A42CC2447CCDC0049380E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2D0A42CF2447E9430049380E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		2D0A42D12447E9B90049380E /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		2D2985862447F0CC005F615F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				2D0A42CC2447CCDC0049380E /* Extensions.swift */,
+				2D2985862447F0CC005F615F /* Utilities.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			files = (
 				2D0A42C72447A8DC0049380E /* NotificationsController.swift in Sources */,
 				2D0A42CB2447AA5D0049380E /* ConversationsController.swift in Sources */,
+				2D2985872447F0CC005F615F /* Utilities.swift in Sources */,
 				2D0A42A62447879B0049380E /* AppDelegate.swift in Sources */,
 				2D0A42CD2447CCDC0049380E /* Extensions.swift in Sources */,
 				2D0A42C52447A8D10049380E /* ExploreController.swift in Sources */,

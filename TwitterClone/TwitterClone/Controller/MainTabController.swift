@@ -12,7 +12,6 @@ class MainTabController: UITabBarController {
     // MARK: - Properties
     
     let actionButton: UIButton = {
-        
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.backgroundColor = .twitterBlue
@@ -45,7 +44,6 @@ class MainTabController: UITabBarController {
     }
     
     func configureViewControllers(){
-        
         let feed = templateNavigationController(image: UIImage(named: "home_unselected"), rootViewController:
             FeedController())
         
