@@ -113,21 +113,27 @@ class RegistrationController: UIViewController {
             return
         }
         
+        print("Beginning of handle Registration")
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let fullname = fullnameTextField.text else { return }
         guard let username = usernameTextField.text else { return }
-        
+        print("Right after assigning all field variables")
         guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
         
         let filename = NSUUID().uuidString
+        print("File name is: " + filename)
         let storageRef = STORAGE_PROFILE_IMAGES.child(filename)
 
-
-        storageRef.putData(imageData, metadata: nil) { meta, error in
+        print("Storage Ref is: " + storageRef.description)
+        print("Right before putData()")
+        storageRef.putData(imageData, metadata: nil) { (meta, error) in
+            print("Right after putData(): ")
             storageRef.downloadURL{( url, error) in
+                print(error)
                 guard let profileImageUrl = url?.absoluteString else { return }
-                
+                print("Right after profileImageUrl")
+                print("Right before createUsser()")
                 Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                     if let error = error {
                         print("DEBUG: Error is \(error.localizedDescription)")
@@ -142,9 +148,11 @@ class RegistrationController: UIViewController {
                                   "fullname": fullname,
                                   "profileImageUrl": profileImageUrl]
                     
+                   print("Before Db call")
                     REF_USERS.child(uid).updateChildValues(values) { (error, ref)  in
                         print("DEBUG: Successfully updated user information..")
                     }
+                    print("After db call")
                 }
                 
             }
