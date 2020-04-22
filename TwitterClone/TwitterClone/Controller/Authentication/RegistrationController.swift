@@ -118,45 +118,20 @@ class RegistrationController: UIViewController {
         guard let password = passwordTextField.text else { return }
         guard let fullname = fullnameTextField.text else { return }
         guard let username = usernameTextField.text else { return }
-        print("Right after assigning all field variables")
+        
         guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
         
         let filename = NSUUID().uuidString
-        print("File name is: " + filename)
         let storageRef = STORAGE_PROFILE_IMAGES.child(filename)
 
-        print("Storage Ref is: " + storageRef.description)
-        print("Right before putData()")
-        storageRef.putData(imageData, metadata: nil) { (meta, error) in
-            print("Right after putData(): ")
-            storageRef.downloadURL{( url, error) in
-                print(error)
-                guard let profileImageUrl = url?.absoluteString else { return }
-                print("Right after profileImageUrl")
-                print("Right before createUsser()")
-                Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-                    if let error = error {
-                        print("DEBUG: Error is \(error.localizedDescription)")
-                        
-                        return
-                    }
-                    
-                    guard let uid = result?.user.uid else { return }
 
-                    let values = ["email": email,
-                                  "username": username,
-                                  "fullname": fullname,
-                                  "profileImageUrl": profileImageUrl]
-                    
-                   print("Before Db call")
-                    REF_USERS.child(uid).updateChildValues(values) { (error, ref)  in
-                        print("DEBUG: Successfully updated user information..")
-                    }
-                    print("After db call")
-                }
-                
-            }
+        let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage )
+        AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
+            print("DEBUG: Sign up successful...")
+            print("DEBUG: Handle update user interface here...")
         }
+        
+
         
     }
     
