@@ -7,23 +7,21 @@
 //
 
 import UIKit
+import Firebase
 
 class RegistrationController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureUI()
-    }
     // MARK: - Properties
     
     private let imagePicker = UIImagePickerController()
+    private var profileImage: UIImage?
     
     private let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "plus_photo"), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(handleAddProfilePhoto), for: .touchUpInside)
-            
+        
         return button
     }()
     
@@ -37,7 +35,7 @@ class RegistrationController: UIViewController {
     private lazy var passwordContainerView: UIView = {
         let view = Utilities().inputContainerView(withImage: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: passwordTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
+        
         return view
     }()
     
@@ -51,13 +49,13 @@ class RegistrationController: UIViewController {
     private lazy var usernameContainerView: UIView = {
         let view = Utilities().inputContainerView(withImage: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: usernameTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
+        
         return view
     }()
     
     private let fullnameTextField: UITextField = {
-
-        return Utilities().TextField(withPlaceholder: "Email")
+        
+        return Utilities().TextField(withPlaceholder: "Full Name")
     }()
     
     private let usernameTextField: UITextField = {
@@ -67,7 +65,7 @@ class RegistrationController: UIViewController {
     }()
     
     private let emailTextField: UITextField = {
-
+        
         return Utilities().TextField(withPlaceholder: "Email")
     }()
     
@@ -98,20 +96,58 @@ class RegistrationController: UIViewController {
         
         return button
     }()
-    // MAKR: - Lifecycle
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUI()
+    }
     
     // MARK: - Selectors
     
     @objc func handleRegistration() {
-        print("Registering...")
-    }
-    @objc func handleAddProfilePhoto() {
-        present(imagePicker, animated: true, completion: nil)
+        guard let profileImage = profileImage else {
+            print("DEBUG: Please select a profile image...")
+            
+            return
+        }
+        
+        print("Beginning of handle Registration")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullname = fullnameTextField.text else { return }
+        guard let username = usernameTextField.text else { return }
+        
+        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else { return }
+        
+        let filename = NSUUID().uuidString
+        let storageRef = STORAGE_PROFILE_IMAGES.child(filename)
+        
+        let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage )
+        AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
+            guard let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) else {
+                return
+            }
+            
+            guard let tab = window.rootViewController as? MainTabController
+                else { return }
+            
+            tab.authenticateUserAndConfigureUI()
+            
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func handleShowLogin(){
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc func handleAddProfilePhoto() {
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
     // MARK: Helpers
     
     func configureUI() {
@@ -138,7 +174,7 @@ class RegistrationController: UIViewController {
         
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                                     right: view.rightAnchor, paddingLeft: 40, paddingRight: 40)
+                                        right: view.rightAnchor, paddingLeft: 40, paddingRight: 40)
     }
 }
 
@@ -146,6 +182,7 @@ class RegistrationController: UIViewController {
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let profileImage = info[.editedImage] as? UIImage else { return }
+        self.profileImage = profileImage
         
         plusPhotoButton.layer.cornerRadius = 128 / 2
         plusPhotoButton.imageView?.contentMode = .scaleAspectFill
