@@ -124,15 +124,11 @@ class RegistrationController: UIViewController {
         let filename = NSUUID().uuidString
         let storageRef = STORAGE_PROFILE_IMAGES.child(filename)
 
-
         let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage )
         AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
             print("DEBUG: Sign up successful...")
             print("DEBUG: Handle update user interface here...")
         }
-        
-
-        
     }
     
     @objc func handleShowLogin(){
