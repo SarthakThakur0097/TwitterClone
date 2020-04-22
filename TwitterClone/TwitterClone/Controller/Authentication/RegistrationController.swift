@@ -21,7 +21,7 @@ class RegistrationController: UIViewController {
         button.setImage(UIImage(named: "plus_photo"), for: .normal)
         button.tintColor = .white
         button.addTarget(self, action: #selector(handleAddProfilePhoto), for: .touchUpInside)
-            
+        
         return button
     }()
     
@@ -35,7 +35,7 @@ class RegistrationController: UIViewController {
     private lazy var passwordContainerView: UIView = {
         let view = Utilities().inputContainerView(withImage: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: passwordTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
+        
         return view
     }()
     
@@ -49,12 +49,12 @@ class RegistrationController: UIViewController {
     private lazy var usernameContainerView: UIView = {
         let view = Utilities().inputContainerView(withImage: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textField: usernameTextField)
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-
+        
         return view
     }()
     
     private let fullnameTextField: UITextField = {
-
+        
         return Utilities().TextField(withPlaceholder: "Full Name")
     }()
     
@@ -65,7 +65,7 @@ class RegistrationController: UIViewController {
     }()
     
     private let emailTextField: UITextField = {
-
+        
         return Utilities().TextField(withPlaceholder: "Email")
     }()
     
@@ -123,11 +123,19 @@ class RegistrationController: UIViewController {
         
         let filename = NSUUID().uuidString
         let storageRef = STORAGE_PROFILE_IMAGES.child(filename)
-
+        
         let credentials = AuthCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage )
         AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
-            print("DEBUG: Sign up successful...")
-            print("DEBUG: Handle update user interface here...")
+            guard let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) else {
+                return
+            }
+            
+            guard let tab = window.rootViewController as? MainTabController
+                else { return }
+            
+            tab.authenticateUserAndConfigureUI()
+            
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -139,7 +147,7 @@ class RegistrationController: UIViewController {
         present(imagePicker, animated: true, completion: nil)
     }
     
-
+    
     // MARK: Helpers
     
     func configureUI() {
@@ -166,7 +174,7 @@ class RegistrationController: UIViewController {
         
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                                     right: view.rightAnchor, paddingLeft: 40, paddingRight: 40)
+                                        right: view.rightAnchor, paddingLeft: 40, paddingRight: 40)
     }
 }
 
